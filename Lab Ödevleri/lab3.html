@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 3 Raporu - Al Foundation Models and Platforms</title>
+    <style>
+        :root {
+            --bg-color: #0B1A38; /* Koyu Uzay Mavisi */
+            --card-bg: #1A1F4C;
+            --accent-color: #ECFFF5; /* Açık Parlak Dokunuş */
+            --text-color: #FFFFFF;
+            --text-muted: #A4A7F5;
+            --danger-zone: #FF6B6B;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4A2F75, #0B1A38);
+            padding: 50px 20px;
+            text-align: center;
+            border-bottom: 3px solid var(--card-bg);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+        }
+
+        .header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        .step-block {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 35px;
+            border-left: 5px solid var(--accent-color);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            color: var(--accent-color);
+            font-size: 1.6rem;
+            margin-top: 0;
+        }
+
+        h3 {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #E2E8F0;
+            font-size: 1.05rem;
+            text-align: justify;
+        }
+
+        .quote-box {
+            background-color: rgba(236, 255, 245, 0.08);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+            border-radius: 0 8px 8px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 1rem;
+            background-color: rgba(11, 26, 56, 0.4);
+        }
+
+        th, td {
+            border: 1px solid #334155;
+            padding: 12px 15px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background-color: #0B1A38;
+            color: var(--accent-color);
+        }
+
+        .slide-structure {
+            list-style: none;
+            padding: 0;
+        }
+
+        .slide-item {
+            background: rgba(74, 47, 117, 0.2);
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #4A2F75;
+        }
+
+        .slide-item strong {
+            color: var(--text-muted);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: var(--text-muted);
+            border-top: 1px solid var(--card-bg);
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>LAB 3 RAPORU: RAG KONSEPT ANALİZİ</h1>
+        <p>Chapter 3: AI Foundation Models and Platforms — Step 1-5 Answers</p>
+    </div>
+
+    <div class="container">
+
+        <!-- STEP 1 & 2 -->
+        <div class="step-block">
+            <h2>Step 1 & Step 2: Deney Kurgusu ve Temel Metrikler</h2>
+            <p><strong>Analiz Senaryosu:</strong> Projenin bilgi sınırlarını zorlamak amacıyla sisteme 3 adet dahili döküman beslenmiştir: <em>doc_detai_specs.pdf</em> (YOLOv11 mimarisi ve mAP@0.5:0.95 skorları), <em>doc_deepflora_iot.pdf</em> (Nevşehir cave-storage LoRaWAN ağ geçidi parametreleri ve 2026 maliyet bütçesi) ve <em>doc_technopark_policy.pdf</em> (Ankara Teknopark staj, veri izolasyonu ve IP kuralları).</p>
+            <h3>Test Sorusu (Query):</h3>
+            <p class="quote-box">"DeepFlora projesinde kullanılan LoRaWAN sensörlerinin kalibrasyon periyodu nedir, 2026 yılı bakım maliyeti ne kadardır ve projenin kodları Ankara Teknopark izolasyon kurallarına göre nasıl saklanmalıdır?"</p>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="step-block">
+            <h2>Step 3: Sonuçların Karşılaştırılması (Evaluation Matrix)</h2>
+            <p>Aynı modele aynı soru dökümansız (Step 1) ve döküman destekli (Step 2) olarak sorulmuş, elde edilen performans çıktıları aşağıdaki kriterlere göre matrise dökülmüştür:</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kriter</th>
+                        <th>Step 1: Dökümansız Cevap (Baseline / Context-Free)</th>
+                        <th>Step 2: Döküman Destekli Cevap (RAG - Grounded)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Accuracy (Doğruluk)</strong></td>
+                        <td><span style="color: var(--danger-zone);">Düşük.</span> Model genel LoRaWAN ağları üzerinden tahmini çıkarım yaptı; projenin gerçek verilerini yansıtmıyor.</td>
+                        <td><span style="color: #22c55e;">Yüksek.</span> Tamamen sağlanan dahili pdf içeriklerine sadık kalınarak doğru ve net bilgi üretildi.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Specificity (Spesifiklik)</strong></td>
+                        <td><span style="color: var(--danger-zone);">Yok.</span> "Sensörler genellikle 6 ayda bir kalibre edilir, maliyetler değişkendir" gibi yuvarlak ve geçersiz ifadeler kullandı.</td>
+                        <td><span style="color: #22c55e;">Maksimum.</span> "Sensör kalibrasyonu 90 günde bir yapılmalıdır, 2026 bakım maliyeti $4.200'dır" gibi net metrikler sağlandı.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Grounding (Dayanak)</strong></td>
+                        <td><span style="color: var(--danger-zone);">Zayıf.</span> Bilgi kaynağı modelin açık internet ağırlıklarıdır. Kaynak doğrulanamıyor ve gösterilemiyor.</td>
+                        <td><span style="color: #22c55e;">Eksiksiz.</span> Cevaplar doğrudan doc_deepflora_iot.pdf sayfa 3 ve doc_technopark_policy.pdf sayfa 1'deki verilere dayandırıldı.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hallucination Risk</strong></td>
+                        <td><span style="color: var(--danger-zone);">Çok Yüksek.</span> Model bilmediği kurumsal verileri "olasılık tabanlı metin tamamlayıcı" doğası gereği uydurmaya (halüsinasyona) meyillidir.</td>
+                        <td><span style="color: #22c55e;">Minimum.</span> Negatif prompt ve döküman sınırı sayesinde model sınırların dışına çıkmadı, bilgi yoksa "Belirtilmemiştir" dedi.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Trustworthiness (Güven)</strong></td>
+                        <td><span style="color: var(--danger-zone);">Sıfır.</span> Gerçek bir mühendislik kurgusunda veya kurumsal İK denetiminde bu tahmini çıktıya güvenilerek operasyon yapılamaz.</td>
+                        <td><span style="color: #22c55e;">Yüksek.</span> Gerçek veriler ve döküman kanıtları (data provenance) içerdiği için iş kararlarında doğrudan kullanılabilir.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Workbook Aktivite Boşluğu Cevabı:</h3>
+            <p class="quote-box">"Unlike a general-purpose AI, an industry-specific model utilizing RAG concept naturally eliminates hallucination risks because it forces the decoder network to search, match, and retrieve statistical weights exclusively from the verified source documents, grounding the contextualized output in real-time enterprise facts that are often overlooked by standard prompts."</p>
+        </div>
+
+        <!-- STEP 4 -->
+        <div class="step-block">
+            <h2>Step 4: Gemini İle Görsel Sunum Mizanpajı Tasarımı</h2>
+            <p>Fikirleri sadece metinle değil, görsel yapılarla aktarmak amacıyla kurgulanan 4 slaytlık profesyonel sunum akışı:</p>
+            
+            <ul class="slide-structure">
+                <li class="slide-item">
+                    <strong>Slide 1: Bağlam Boşluğu ve Riskler (The Context Gap)</strong><br>
+                    Geleneksel genel amaçlı LLM'lerin dahili kurumsal verilere erişememesinden kaynaklanan halüsinasyon riskleri. Görsel mizanpaj: Sol tarafta açık internet havuzu (100TB), sağ tarafta kilitli kurumsal veri şeması illüstrasyonu.
+                </li>
+                <li class="slide-item">
+                    <strong>Slide 2: Çözüm Mimarisi (Retrieval-Augmented Generation)</strong><br>
+                    Veriyi eğitmeksizin, Query-Key-Value retrieval mekanizmasıyla modeli dinamik olarak besleme. Görsel mizanpaj: Akış şeması (Blok Diyagram): User Query -> Vector DB Semantic Match -> Prompt Augmentation -> LLM Inference.
+                </li>
+                <li class="slide-item">
+                    <strong>Slide 3: Performans ve Güven Analizi (A/B Test Outcomes)</strong><br>
+                    Grounded AI ile Context-Free AI çıktılarının spesifiklik (rakamlar, tarihler, kurallar) yönünden mikro düzeyde kıyaslanması. Görsel mizanpaj: Kırmızı ve yeşil renk kodlu iki sütunlu metrik kıyaslama tablosu.
+                </li>
+                <li class="slide-item">
+                    <strong>Slide 4: Stratejik Mimari Seçim (Platform & Infrastructure)</strong><br>
+                    Veri izolasyonu ve fikri mülkiyet (IP) koruması yüksek olan bu senaryoda neden sLLM (Private AI) ve NVIDIA NIM / Azure OpenAI entegrasyonunun tercih edilmesi gerektiği. Görsel mizanpaj: Güvenlik kalkanı ve yerel sunucu (On-Premise) entegrasyon check-list grafiği.
+                </li>
+            </ul>
+        </div>
+
+        <!-- STEP 5 -->
+        <div class="step-block">
+            <h2>Step 5: Reflection Questions (Değerlendirme Soruları)</h2>
+            <p><strong>1. What risk would occur if a general-purpose LLM were used in this industry?</strong><br>
+            Model, projelerimizin özel parametrelerini bilmediği için olasılık tabanlı algoritması gereği en mantıklı duyulan ama tamamen uydurma olan kalibrasyon süreleri ve sahte maliyet rakamları üretecektir (Hallucination). Ayrıca, hassas kaynak kodlarımızı koruyan Ankara Teknopark izolasyon kurallarını ihlal ederek dışarıya veri sızdırma (Data/Security Leak Risk) olasılığı doğacaktır.</p>
+            
+            <p><strong>2. Which Unit 1 concept best explains this case?**</strong><br>
+            Bu durum en iyi <strong>"Vertical AI (Dikey Yapay Zeka)"</strong> ve <strong>"Private AI (Güvenlik-Kritik Dağıtım)"</strong> konseptleriyle açıklanır. Genel amaçlı modellerin geniş ama yüzeysel bilgisi yerine, endüstriye veya projeye özel verilerin sLLM (Small LLM) mimarileriyle yerel ağda (On-Premise) güvenli şekilde işlenmesi zorunluluğunu doğrudan doğrulamaktadır.</p>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2026 Ahmet — Samsung Innovation Campus Chapter 3 Lab Raporu. Together for Tomorrow!</p>
+    </div>
+
+</body>
+</html>

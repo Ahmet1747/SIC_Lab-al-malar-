@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmet | Kişisel Portfolyo</title>
+    <style>
+        :root {
+            --bg-color: #0B1A38; /* Koyu Uzay Mavisi */
+            --card-bg: #1A1F4C;
+            --accent-color: #ECFFF5; /* Açık Parlak Dokunuş */
+            --text-color: #FFFFFF;
+            --text-muted: #A4A7F5;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #4A2F75, #0B1A38);
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3rem;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        .section {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        @media (min-width: 768px) {
+            .section {
+                flex-direction: row;
+                align-items: center;
+            }
+            .section.reverse {
+                flex-direction: row-reverse;
+            }
+            .section-content, .section-img {
+                flex: 1;
+            }
+        }
+
+        .section-content h2 {
+            font-size: 2rem;
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--card-bg);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .section-content p {
+            color: #E2E8F0;
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+
+        /* Yetenekler için Grid Yapısı */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        @media (min-width: 480px) {
+            .skills-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .skill-card h3 {
+            margin: 0 0 8px 0;
+            font-size: 1.1rem;
+            color: var(--accent-color);
+        }
+
+        .skill-card p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #E2E8F0;
+            line-height: 1.4;
+        }
+
+        .section-img {
+            position: relative;
+            background: linear-gradient(135deg, #1A1F4C, #4A2F75);
+            border-radius: 12px;
+            overflow: hidden;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        .section-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .section-img img:hover {
+            transform: scale(1.03);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            border-top: 1px solid var(--card-bg);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>AHMET CAN BEZİKOĞLU</h1>
+        <p>Computer Engineering Student | AI, Computer Vision & MLOps Developer</p>
+    </header>
+
+    <div class="container">
+        
+        <!-- SECTION 1: WHO I AM (Çalışma Alanı Görselin Eklendi) -->
+        <div class="section">
+            <div class="section-content">
+                <h2>Who I Am</h2>
+                <p>Nevşehir Hacı Bektaş Veli Üniversitesi Bilgisayar Mühendisliği 4. sınıf öğrencisiyim. Yazılım geliştirme sürecine ve teknolojinin problem çözme gücüne duyduğum ilgiyle özellikle Derin Öğrenme, Makine Öğrenmesi, MLOps (Docker, MLflow), Görüntü İşleme (OpenCV, YOLO) alanlarında aktif olarak projeler üretmekte ve kendimi sürekli geliştirmekteyim.</p>
+                <p>Hem akademik bilgimi hem de pratik becerilerimi daha ileriye taşımak adına disiplinli, öğrenmeye istekli ve sorumluluk almaktan çekinmeyen bir yaklaşım benimsiyorum. Eğitim sürecim içerisinde araştırma, öz motivasyon, girişimcilik ve farklı yetenekler edinme noktasında kendimi geliştirdim. İş yaşamında efektif ve hızlı olmak konusunda son derece özverili ve hevesli olduğumu, yapacağım işlerin gerektirdiği sorumluluğu merak ve istekle üzerime almak istediğimi belirtmek isterim. İstekli, özenli ve dikkatli çalışmanın mutlaka başarı ile sonuçlanacağının bilincindeyim.</p>
+            </div>
+            <div class="section-img">
+                <img src="who-i-am.png" alt="Ahmet Workspace - AI & Computer Vision Dev">
+            </div>
+        </div>
+
+        <!-- SECTION 2: MY SKILLS (Siber Pipeline Şeman Eklendi) -->
+        <div class="section reverse">
+            <div class="section-content">
+                <h2>My Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3>Yapay Zeka & Derin Öğrenme</h3>
+                        <p>CNN, ANN, Model Tasarımı ve Eğitim Süreçleri</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Görüntü İşleme</h3>
+                        <p>YOLO, OpenCV, Nesne Tespiti (Object Detection), Görüntü Sınıflandırma</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Kütüphaneler & Frameworks</h3>
+                        <p>TensorFlow, Keras, PyTorch, NumPy, Pandas, Matplotlib</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Yazılım, Araçlar & MLOps</h3>
+                        <p>Python, SQL, Kotlin, Git/GitHub, Linux, TFLite, VS Code, Android Studio, Anaconda, Docker, Kubernetes, Excel, AutoCAD</p>
+                    </div>
+                </div>
+            </div>
+            <div class="section-img">
+                <img src="my-skills.png" alt="AI Architecture & MLOps Pipeline">
+            </div>
+        </div>
+
+        <!-- SECTION 3: MY FUTURE GOAL (Ankara Teknopark Görselin Eklendi) -->
+        <div class="section">
+            <div class="section-content">
+                <h2>My Future Goal</h2>
+                <p>Edindiğim teorik derin öğrenme altyapısını ve geniş pratik araç setimi (PyTorch, TensorFlow, Docker, Kubernetes) birleştirerek, endüstriyel ölçekte yapay zeka projelerinin tüm yaşam döngüsünü yönetebilen bir mühendis olmayı hedefliyorum. Özellikle Ankara Technopark'larındaki yenilikçi teknoloji şirketleri bünyesinde, büyük veriyi işleyen ve anlamlandıran katma değerli projelerde aktif sorumluluk almak öncelikli planlarım arasındadır.</p>
+                <p>Geliştirdiğim modelleri sadece yerel ortamlarda bırakmayıp, TFLite und Android Studio/Kotlin yetkinliklerimle mobil ve uç cihazlara entegre ederek, gerçek hayattaki karmaşık problemlere hızlı, efektif ve yüksek performanslı çözümler sunmayı amaçlıyorum. Sürekli öğrenme hevesim ve disiplinli çalışma yaklaşımımla, MLOps süreçlerinden mobil entegrasyona kadar uçtan uca akıllı sistemlerin mimarisini inşa etmek ve teknoloji ekosistemine küresel standartlarda katkı sağlamak en büyük gelecek motivasyonumdur.</p>
+            </div>
+            <div class="section-img">
+                <img src="future-goal.png" alt="Futuristic Technopark R&D Center - Ankara Vision">
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Ahmet. Together for Tomorrow!</p>
+    </footer>
+
+</body>
+</html>
